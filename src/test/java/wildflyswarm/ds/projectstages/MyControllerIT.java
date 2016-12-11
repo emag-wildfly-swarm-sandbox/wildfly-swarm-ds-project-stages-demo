@@ -1,6 +1,5 @@
 package wildflyswarm.ds.projectstages;
 
-import org.assertj.core.api.Assertions;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -15,6 +14,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Arquillian.class)
 public class MyControllerIT {
@@ -34,8 +35,8 @@ public class MyControllerIT {
 
     Response response = target.request(MediaType.APPLICATION_JSON).get();
 
-    Assertions.assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
-    Assertions.assertThat(response.readEntity(String.class).contains("org.jboss.jca.adapters.jdbc.jdk7.WrappedConnectionJDK7"));
+    assertThat(response.getStatus()).isEqualTo(Response.Status.OK.getStatusCode());
+    assertThat(response.readEntity(String.class).contains("org.jboss.jca.adapters.jdbc.jdk7.WrappedConnectionJDK7"));
   }
 
 }
